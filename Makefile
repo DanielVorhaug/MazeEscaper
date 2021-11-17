@@ -2,20 +2,20 @@
 MSIZE=31
 SEED=29
 OPT=
-.PHONY:maze
+.PHONY:synthesis/maze
 
 all: mazev solve plot
 
 mazev:
 	-rm maze.txt
-	iverilog -g2012 -o mazegen_tb -c mazegen_tb.fl -DMAZE_SEED=${SEED} -DMAZE_SIZE=${MSIZE}
-	vvp -n mazegen_tb
+	iverilog -g2012 -o synthesis/mazegen_tb -c mazegen_tb.fl -DMAZE_SEED=${SEED} -DMAZE_SIZE=${MSIZE}
+	vvp -n synthesis/mazegen_tb
 
 solve:
-	-rm path.txt
-	-rm turtle.txt
-	iverilog -g2012 -o maze -c maze.fl -DMAZE_SEED=34 -DMAZE_SIZE=${MSIZE}
-	vvp -n maze
+	-rm synthesis/path.txt
+	-rm synthesis/turtle.txt
+	iverilog -g2012 -o synthesis/maze -c maze.fl -DMAZE_SEED=34 -DMAZE_SIZE=${MSIZE}
+	vvp -n synthesis/maze
 
 plot:
 	python3 plotmaze.py ${OPT}

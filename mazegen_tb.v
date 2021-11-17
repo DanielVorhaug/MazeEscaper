@@ -70,11 +70,11 @@ module mazegen_tb;
 
         seed = `MAZE_SEED;
 
-        $dumpfile("mazegen_tb.vcd");
+        $dumpfile("simulation/mazegen_tb.vcd");
         $dumpvars(0,mazegen_tb);
 
 
-        fo = $fopen("maze.txt","w");
+        fo = $fopen("synthesis/maze.txt","w");
         #sim_end
           for (y = 0; y<size; y=y+1) begin
                $fwrite(fo,"%b\n",maze[y]);

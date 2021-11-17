@@ -47,7 +47,7 @@ clock = pygame.time.Clock()
 #- Fill screen
 maze = list()
 
-with open("maze.txt","r") as fi:
+with open("synthesis/maze.txt","r") as fi:
     for line in fi:
         line = line.strip()
         slist = list()
@@ -76,7 +76,7 @@ for l in maze:
 
 
 turtle = list()
-with open("turtle.txt","r") as fi:
+with open("synthesis/turtle.txt","r") as fi:
     for line in fi:
         xy = line.strip()
         sxy = re.split(",",line)
