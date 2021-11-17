@@ -37,7 +37,7 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
    parameter size = 9;
    parameter N = 3;
 
-   parameter FIND_START=0, FIND_STOP=1, VISIT=2, PICK_NEXT=3,MOVE=4,STOP=5,WASTE=6;
+   parameter FIND_START=0, FIND_STOP=1, VISIT=2, PICK_NEXT=3,MOVE=4,STOP=5;
 
 
    parameter LEFT=0,RIGHT=1, DOWN=2, UP=3,NONE=4;
@@ -81,7 +81,7 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
              if(maze[0][x])
                x++;
              else
-               state <= WASTE;
+               state <= VISIT;
            VISIT: begin
               path[y][x] = 1 ;
 
@@ -89,13 +89,6 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 state <= STOP;
               else
                 state <= PICK_NEXT;
-           end
-           WASTE: begin
-              // Let's waste some time just to get a bad result
-              if(waste > 1000)
-                state <= VISIT;
-
-              waste += 1;
            end
            PICK_NEXT: begin
               case(direction)
