@@ -179,7 +179,6 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                   end
                 end
               endcase // case (direction)
-//              state <= VISIT;
 
               path[y][x] = 1 ;
 
@@ -190,24 +189,7 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
 
               
            end // case: PICK_NEXT
-           MOVE: begin
-
-              // case(direction)
-              //   RIGHT:  x -=1;
-              //   LEFT: x +=1;
-              //   UP:    y -=1;
-              //   DOWN:  y +=1;
-              //   NONE: x = x;
-              // endcase // case (direction)
-
-              state <= VISIT;
-              path[y][x] = 1 ;
-
-              if(sx == x && sy==y)
-                state <= STOP;
-              else
-                state <= PICK_NEXT;
-           end // case: MOVE
+           
            STOP: begin
               done <= 1;
            end
