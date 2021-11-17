@@ -34,7 +34,7 @@ import os
 import subprocess
 pygame.init()
 
-size = width, height = 800, 800
+size = width, height = 400, 400
 speed = [2, 2]
 black = 0, 0, 0
 white = (255,255,255)
