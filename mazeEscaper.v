@@ -93,19 +93,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 RIGHT: begin
                   if(~maze[y-1][x]) begin
                     direction <= UP;
-                    y -=1;
+                    y <=y-1;
                   end
                    else if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
 
                    else begin
@@ -115,19 +115,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 LEFT: begin
                    if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
                    else if(~maze[y-1][x]) begin
                      direction <= UP;
-                     y -=1;
+                     y <=y-1;
                   end
                    else if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else begin
                      direction <= NONE;
@@ -136,19 +136,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 UP: begin
                    if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
                    else if(~maze[y-1][x]) begin
                      direction <= UP;
-                     y -=1;
+                     y <=y-1;
                   end
                    else if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else begin
                      direction <= NONE;
@@ -158,27 +158,28 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 DOWN: begin
                    if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
                    else if(~maze[y-1][x]) begin
                      direction <= UP;
-                     y -=1;
+                     y <=y-1;
                   end
                    else begin
                      direction <= NONE;
                   end
                 end
               endcase // case (direction)
-
-              path[y][x] <= 1 ;
+              x1 <= x;
+              y1 <= y;
+              
 
               if(sx == x && sy==y)
                 state <= STOP;
@@ -187,19 +188,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 RIGHT: begin
                   if(~maze[y-1][x]) begin
                     direction <= UP;
-                    y -=1;
+                    y <=y-1;
                   end
                    else if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
 
                    else begin
@@ -209,19 +210,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 LEFT: begin
                    if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
                    else if(~maze[y-1][x]) begin
                      direction <= UP;
-                     y -=1;
+                     y <=y-1;
                   end
                    else if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else begin
                      direction <= NONE;
@@ -230,19 +231,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 UP: begin
                    if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
                    else if(~maze[y-1][x]) begin
                      direction <= UP;
-                     y -=1;
+                     y <=y-1;
                   end
                    else if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else begin
                      direction <= NONE;
@@ -252,19 +253,19 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                 DOWN: begin
                    if(~maze[y][x-1]) begin
                      direction <= RIGHT;
-                     x -=1;
+                     x <=x-1;
                   end
                    else if(~maze[y+1][x]) begin
                      direction <= DOWN;
-                     y +=1;
+                     y <=y+1;
                   end
                    else if(~maze[y][x+1]) begin
                      direction <= LEFT;
-                     x +=1;
+                     x <=x+1;
                   end
                    else if(~maze[y-1][x]) begin
                      direction <= UP;
-                     y -=1;
+                     y <=y-1;
                   end
                    else begin
                      direction <= NONE;
