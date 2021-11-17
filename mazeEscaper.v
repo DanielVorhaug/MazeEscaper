@@ -177,8 +177,9 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                   end
                 end
               endcase // case (direction)
-              x1 <= x;
-              y1 <= y;
+
+              //path[y][x] <= 1 ;
+              
               
 
               if(sx == x && sy==y)
@@ -272,13 +273,107 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                   end
                 end
                 endcase
+                //path[y][x] <= 1 ;
 
+                if(sx == x && sy==y)
+                  state <= STOP;
+                else
+                  begin
+                case(direction) 
+                RIGHT: begin
+                  if(~maze[y-1][x]) begin
+                    direction <= UP;
+                    y <=y-1;
+                  end
+                   else if(~maze[y][x-1]) begin
+                     direction <= RIGHT;
+                     x <=x-1;
+                  end
+                   else if(~maze[y+1][x]) begin
+                     direction <= DOWN;
+                     y <=y+1;
+                  end
+                   else if(~maze[y][x+1]) begin
+                     direction <= LEFT;
+                     x <=x+1;
+                  end
+
+                   else begin
+                     direction <= NONE;
+                  end
+                end
+                LEFT: begin
+                   if(~maze[y+1][x]) begin
+                     direction <= DOWN;
+                     y <=y+1;
+                  end
+                   else if(~maze[y][x+1]) begin
+                     direction <= LEFT;
+                     x <=x+1;
+                  end
+                   else if(~maze[y-1][x]) begin
+                     direction <= UP;
+                     y <=y-1;
+                  end
+                   else if(~maze[y][x-1]) begin
+                     direction <= RIGHT;
+                     x <=x-1;
+                  end
+                   else begin
+                     direction <= NONE;
+                  end
+                end
+                UP: begin
+                   if(~maze[y][x+1]) begin
+                     direction <= LEFT;
+                     x <=x+1;
+                  end
+                   else if(~maze[y-1][x]) begin
+                     direction <= UP;
+                     y <=y-1;
+                  end
+                   else if(~maze[y][x-1]) begin
+                     direction <= RIGHT;
+                     x <=x-1;
+                  end
+                   else if(~maze[y+1][x]) begin
+                     direction <= DOWN;
+                     y <=y+1;
+                  end
+                   else begin
+                     direction <= NONE;
+                  end
+
+                end
+                DOWN: begin
+                   if(~maze[y][x-1]) begin
+                     direction <= RIGHT;
+                     x <=x-1;
+                  end
+                   else if(~maze[y+1][x]) begin
+                     direction <= DOWN;
+                     y <=y+1;
+                  end
+                   else if(~maze[y][x+1]) begin
+                     direction <= LEFT;
+                     x <=x+1;
+                  end
+                   else if(~maze[y-1][x]) begin
+                     direction <= UP;
+                     y <=y-1;
+                  end
+                   else begin
+                     direction <= NONE;
+                  end
+                end
+                endcase
                 path[y][x] <= 1 ;
 
                 if(sx == x && sy==y)
                   state <= STOP;
                 else
                   state <= PICK_NEXT;
+              end
               end
 
 
