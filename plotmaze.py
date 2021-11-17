@@ -107,7 +107,7 @@ while 1:
             filenamelist[i] = "pics/pic" + str(i) + ".png"
             pygame.image.save(screen, filenamelist[i])
         else:
-            clock.tick(50)
+            clock.tick(150)
         pygame.display.flip()
         i+=1
     else:
