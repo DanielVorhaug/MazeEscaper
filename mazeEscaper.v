@@ -93,12 +93,12 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
            PICK_NEXT: begin
               case(direction)
                 RIGHT: begin
-                   if(~maze[y+1][x])
-                     direction <= DOWN;
+                   if(~maze[y-1][x])
+                     direction <= UP;
                    else if(~maze[y][x-1])
                      direction <= RIGHT;
-                   else if(~maze[y-1][x])
-                     direction <= UP;
+                   else if(~maze[y+1][x])
+                     direction <= DOWN;
                    else if(~maze[y][x+1])
                      direction <= LEFT;
 
@@ -106,24 +106,24 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
                      direction <= NONE;
                 end
                 LEFT: begin
-                   if(~maze[y-1][x])
-                     direction <= UP;
+                   if(~maze[y+1][x])
+                     direction <= DOWN;
                    else if(~maze[y][x+1])
                      direction <= LEFT;
-                   else if(~maze[y+1][x])
-                     direction <= DOWN;
+                   else if(~maze[y-1][x])
+                     direction <= UP;
                    else if(~maze[y][x-1])
                      direction <= RIGHT;
                    else
                      direction <= NONE;
                 end
                 UP: begin
-                   if(~maze[y][x-1])
-                     direction <= RIGHT;
+                   if(~maze[y][x+1])
+                     direction <= LEFT;
                    else if(~maze[y-1][x])
                      direction <= UP;
-                   else if(~maze[y][x+1])
-                     direction <= LEFT;
+                   else if(~maze[y][x-1])
+                     direction <= RIGHT;
                    else if(~maze[y+1][x])
                      direction <= DOWN;
                    else
@@ -131,12 +131,12 @@ module mazeEscaper ( input logic [size-1:0] maze[size-1:0],
 
                 end
                 DOWN: begin
-                   if(~maze[y][x+1])
-                     direction <= LEFT;
+                   if(~maze[y][x-1])
+                     direction <= RIGHT;
                    else if(~maze[y+1][x])
                      direction <= DOWN;
-                   else if(~maze[y][x-1])
-                     direction <= RIGHT;
+                   else if(~maze[y][x+1])
+                     direction <= LEFT;
                    else if(~maze[y-1][x])
                      direction <= UP;
                    else
