@@ -1,0 +1,12 @@
+
+maze
+
+maze.txt
+
+*.vcd
+
+mazegen_tb
+
+*.txt
+
+result.yaml
